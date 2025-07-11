@@ -1,0 +1,77 @@
+Create a clean PHP Payroll Management Module named **SnapprOps Payroll**.
+
+💼 Key Functional Areas:
+1. Employee management
+2. Time/attendance input
+3. Benefits management (SSS, PhilHealth, Pag-IBIG, allowances, bonuses)
+4. Monthly payroll computation
+5. Net pay summary with breakdown
+6. Admin dashboard + CSV export
+
+🛠 Tech Stack:
+- PHP 8+ (Vanilla or Laravel preferred)
+- Database: MySQL (or Neon PostgreSQL-compatible)
+- Frontend: HTML/CSS or Bootstrap
+- Optional: Chart.js for analytics
+
+📄 Required Tables:
+
+1. `employees`
+   - id, name, email, position, salary_rate
+
+2. `attendance`
+   - id, employee_id, date, hours_worked
+
+3. `benefits`
+   - id, employee_id, type ('SSS', 'PhilHealth', 'Bonus', etc.), amount, is_taxable, applies_to_month
+
+4. `payroll`
+   - id, employee_id, month, hours_worked, gross_pay, total_deductions, net_pay, generated_at
+
+📦 Core Features:
+
+✅ **Employee Dashboard**
+- Add/update employee profile
+- Assign salary rate (per hour or per month)
+
+✅ **Attendance Management**
+- Manual or biometric sync (via CSV)
+- Admin inputs hours worked per employee/month
+
+✅ **Benefits Module**
+- Add recurring or one-time benefits
+- Support: Allowances, Bonuses, 13th month
+- Auto-deduct SSS, PhilHealth, Pag-IBIG (based on salary brackets or flat %)
+
+✅ **Payroll Computation**
+- Calculate monthly gross pay: `rate × hours + benefits`
+- Deduct:
+   - SSS: 4.5% (split EE/ER)
+   - PhilHealth: 4.5% of salary
+   - Pag-IBIG: 2% (max cap ₱100)
+- Net Pay = Gross - Deductions
+- All stored per employee, per month
+
+✅ **Admin Payroll Dashboard**
+- View per-employee breakdown:
+  - Hours worked, Gross, Deductions, Net
+- Export payroll summary as `.csv` or `.pdf`
+
+✅ **Security**
+- Admin login (username/password)
+- Sessions or token-based
+
+✅ **Optional Extras**
+- Upload `.csv` from Sprout/Rippling to auto-fill attendance
+- Export data to Neon-compatible SQL
+
+📁 Folder Structure:
+- /views/
+- /controllers/
+- /models/
+- /database/
+- /assets/
+
+App Name: **SnapprOps Payroll**
+
+Make sure the app is clean, responsive, localized for the Philippines, and easy to expand (leave, 13th month, etc.).

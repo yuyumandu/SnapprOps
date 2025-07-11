@@ -1,0 +1,79 @@
+Create a complete HRIS web application in PHP called **SnapprOps**, with the following features and structure:
+
+🧩 TECH STACK:
+- PHP 8+
+- MySQL or Neon-compatible PostgreSQL
+- Bootstrap (or plain HTML/CSS)
+- Google Sheets API (for admin data import)
+- Session-based authentication
+- Role-based access (admin, employee)
+
+📛 APP NAME: SnapprOps
+
+---
+
+### 👤 EMPLOYEE PORTAL
+
+🔐 Auth:
+- Login via email + password
+- Table: `employees (id, name, email, password_hash, role)`
+- On login, store: `$_SESSION['employee_id']`, `$_SESSION['role'] = 'employee'`
+
+📁 Features in `/employee/`:
+
+1. `dashboard.php`
+   - Welcome header and nav to all features
+
+2. `attendance.php`
+   - View logged hours and dates
+   - Filter by month/range
+   - Table: `attendance (employee_id, date, hours)`
+
+3. `request-attendance.php`
+   - Submit correction (date, in/out, reason)
+   - Table: `attendance_requests (id, employee_id, date, type, reason, status)`
+
+4. `request-overtime.php`
+   - Submit OT (date, hours, reason)
+   - Table: `overtime_requests (id, employee_id, date, hours, reason, status)`
+
+5. `request-leave.php`
+   - Request leave (start date, end date, reason)
+   - Table: `leave_requests (id, employee_id, start_date, end_date, reason, status)`
+
+6. `payroll.php`
+   - View personal payroll:
+     - Gross, deductions (SSS, PhilHealth, Pag-IBIG), net
+   - Table: `payroll (id, employee_id, month, gross, deductions, net)`
+
+7. `notifications.php`
+   - View admin pings for missing requirements
+   - Table: `pings (employee_id, requirement, status, sent_at)`
+   - Button to “Mark as Read”
+
+---
+
+### 🧑‍💼 ADMIN PANEL — PING EMPLOYEES MODULE
+
+🔐 Auth:
+- Only admins (`role = 'admin'`) access `/admin/`
+
+📁 `/admin/benefits.php`:
+
+✅ Feature: **Ping Employees**
+- Table of employees and their missing benefit docs
+- Show each with a “🔔 Ping” button
+- Clicking "Ping" sends to `/controllers/send-ping.php`
+
+📄 Backend:
+
+```sql
+CREATE TABLE pings (
+  id SERIAL PRIMARY KEY,
+  employee_id INT NOT NULL,
+  requirement TEXT NOT NULL,
+  ping_type VARCHAR DEFAULT 'benefits',
+  pinged_by INT NOT NULL,
+  status VARCHAR DEFAULT 'unread',
+  sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
