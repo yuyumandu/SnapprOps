@@ -79,6 +79,9 @@
     "zod-validation-error": "^3.4.0"
   },
   "devDependencies": {
+    "@types/node": "^20.11.30",
+  "vite": "^5.4.0"
+}
     "@replit/vite-plugin-cartographer": "^0.2.7",
     "@replit/vite-plugin-runtime-error-modal": "^0.0.3",
     "@tailwindcss/typography": "^0.5.15",
