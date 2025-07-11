@@ -1,25 +1,44 @@
 {
   "compilerOptions": {
+    // Compile for modern JavaScript and use native ES modules
     "target": "ESNext",
     "module": "ESNext",
+
+    // Use Node-style module resolution for both server and Vite
     "moduleResolution": "Node",
+
+    // Enable type safety features
     "strict": true,
+
+    // Allow JSX but let tooling like Vite handle it
     "jsx": "preserve",
+
+    // Allow interop between CommonJS and ES modules
     "esModuleInterop": true,
+
+    // Speed up builds by skipping type checks on libraries
     "skipLibCheck": true,
+
+    // Enforce consistent casing in import paths
     "forceConsistentCasingInFileNames": true,
+
+    // Allow .ts imports with extensions
     "allowImportingTsExtensions": true,
+
+    // Avoid generating output — used with tools like Vite
     "noEmit": true,
+
+    // Enable incremental builds and cache
     "incremental": true,
     "tsBuildInfoFile": "./node_modules/typescript/tsbuildinfo",
+
+    // Make relative imports cleaner
     "baseUrl": ".",
+
+    // Register global types (FIXED)
     "types": ["node", "vite/client"],
+
+    // Target modern JS and browser APIs
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    "paths": {
-      "@/*": ["./client/src/*"],
-      "@shared/*": ["./shared/*"]
-    }
-  },
-  "include": ["client/src", "shared", "server"],
-  "exclude": ["node_modules", "dist", "build", "**/*.test.ts"]
-}
+
+    // Shortcut paths (u
