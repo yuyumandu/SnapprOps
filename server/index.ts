@@ -2,7 +2,8 @@ import express, { type Request, Response, NextFunction } from "express";
 import session from "express-session";
 import pgSession from "connect-pg-simple";
 import passport from "passport";
-import { Issuer, Strategy as OpenIDConnectStrategy } from "openid-client";
+import openid from "openid-client";
+const { Issuer, Strategy: OpenIDConnectStrategy } = openid;
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
